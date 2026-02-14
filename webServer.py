@@ -52,9 +52,10 @@ def webServer(port=13331):
             connectionSocket.close()  # closing the connection socket
 
         except Exception as e:
-            header404 = (b"HTTP/1.1 404 Error\r\nServer: CS6843-Server\r\nConnection: close\r\n" + outputdata
+            header404 = (b"HTTP/1.1 404 Not Found\r\nServer: CS6843-Server\r\nConnection: close\r\n" + outputdata
                          + b"\r\n<html><body><h1>404 Not Found</h1></body></html>")
             connectionSocket.sendall(header404)
+            connectionSocket.close()  # closing the connection socket
     # Send response message for invalid request due to the file not being found (404)
     # Remember the format you used in the try: block!
     # Fill in start
@@ -63,7 +64,6 @@ def webServer(port=13331):
 
     # Close client socket
     # Fill in start
-
     # Fill in end
 
     # Commenting out the below (some use it for local testing). It is not required for Gradescope, and some students have moved it erroneously in the While loop.
