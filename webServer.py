@@ -52,7 +52,8 @@ def webServer(port=13331):
             connectionSocket.close()  # closing the connection socket
 
         except Exception as e:
-            print("404 Not Found Error: The Requested URL Was Not Found.")
+            header404 = b"HTTP/1.1 404 Error\r\nServer: CS6843-Server\r\nConnection: close\r\n" + outputdata + b"\r\n"
+            connectionSocket.sendall(header404)
     # Send response message for invalid request due to the file not being found (404)
     # Remember the format you used in the try: block!
     # Fill in start
